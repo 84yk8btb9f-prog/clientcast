@@ -6,6 +6,51 @@ clientcast turns your Git commits into a client update email, delivers it for yo
 
 > **Why this exists.** Freelancers and agencies bleed hours on status updates and "can you also..." emails that quietly become unpaid work. clientcast reads your commits, drafts a plain-English update for the client, and when the client replies, Claude tells you whether it was approval, feedback, a concern, or scope creep — with hours and dollars attached.
 
+## What is clientcast?
+
+**clientcast is a command-line tool and MCP server that turns your git commits into an AI-drafted client update email, then reads the client's reply and tells you whether it was an approval, real feedback, or scope creep — with the extra work priced in hours and dollars.**
+
+### Why clientcast
+
+Most client-update tools stop at "here's what changed." clientcast reads the *reply*. When a client says "looks great, can you also add a Spanish version?" it flags that as additional work, estimates it against your scope doc and hourly rate, and hands you a Stripe payment link before you've written a single "sure, that'll be extra" email. That reply-classification-to-invoice loop is the part nobody else does.
+
+### clientcast vs the alternatives
+
+| | clientcast | Manual status emails | PM tools (Basecamp, Trello) | Time trackers (Harvest, Toggl) |
+|---|---|---|---|---|
+| Drafts the update from your actual commits | Yes | No | No | No |
+| Reads the client reply and classifies it | Yes | No | No | No |
+| Flags scope creep with hours + dollars | Yes | No | No | No |
+| Turns flagged work into a payment link | Yes (Stripe) | No | No | No |
+| Runs from your terminal / Claude Code | Yes | — | No | No |
+
+Honest limits: clientcast is not a full PM suite, not an accounting system, and not a CRM. It does one thing — the commit-to-update-to-paid loop — and hands billing off to Stripe.
+
+### When to use clientcast
+
+- You ship client work in git and write status updates by hand
+- Clients keep sneaking new work into "quick" replies and you keep eating the cost
+- You want scope creep priced the moment it's asked for, not at invoice time
+- You already use Claude Code and want the loop drivable from inside a session (MCP)
+- You bill hourly or fixed-scope and need a paper trail of what was in scope
+
+### FAQ
+
+**Do I need an Anthropic API key?**
+For local CLI use, no — clientcast spawns the `claude` binary and uses your Claude Pro/Max subscription. The hosted viewer needs `ANTHROPIC_API_KEY` because serverless functions can't spawn the CLI.
+
+**How does it decide something is scope creep?**
+When a reply arrives, Claude classifies it (approve / feedback / additional-work / concern / mixed). If it's additional work, a second pass estimates hours against your `scope.md` and multiplies by your hourly rate. You see the number; you decide.
+
+**Does the client need an account or login?**
+No. They get a no-login link, read the update, comment, and approve in the browser.
+
+**What actually gets uploaded when I send?**
+The full update payload — commits, the drafted email, a snapshot of your scope doc, and your hourly rate — goes to a publicly-readable Vercel Blob URL. The URL holds only the update ID, but anyone with the link can read it. Keep secrets out of commit messages and scope docs.
+
+**Can I self-host the viewer?**
+Yes. Deploy `viewer/` to your own Vercel project and point clientcast at it with `CLIENTCAST_VIEWER_URL`.
+
 ## What you get
 
 - **`clientcast`** — CLI that reads recent commits and drafts a client update with Claude
