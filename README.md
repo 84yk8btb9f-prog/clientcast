@@ -55,7 +55,7 @@ clientcast send
 # Reading commits...
 # Drafting update from 8 commits...
 # Uploading...
-# ✓ Update ready: https://clientcast.vercel.app/u/8af2k3lq01
+# ✓ Update ready: https://clientcast-landing.vercel.app/u/8af2k3lq01
 # Send this link to Bob for review.
 
 # Bob replies on the page. Then:
@@ -142,7 +142,7 @@ Now Claude can wrap up your work and ping the client without leaving the editor.
 1. CLI reads commits via `simple-git` (with stats: files changed, insertions, deletions)
 2. Spawns `claude` subprocess with a draft-update prompt that includes commits + your scope doc
 3. Saves the update payload (commits + draft + scope doc snapshot + hourly rate snapshot) to Vercel Blob
-4. Hosted viewer at `clientcast.vercel.app/u/<id>` renders the update with a reply form
+4. Hosted viewer at `clientcast-landing.vercel.app/u/<id>` renders the update with a reply form
 5. Reply submission hits the viewer's API route → Anthropic API classifies it → if scope creep is detected, the flagger runs against the saved scope doc → cost estimate added to the payload
 6. `clientcast status` reads back the updated payload
 

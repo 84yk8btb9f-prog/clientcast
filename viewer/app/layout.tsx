@@ -1,20 +1,36 @@
 import type { Metadata } from 'next';
-import { Sora, Plus_Jakarta_Sans, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
-const sora = Sora({ subsets: ['latin'], variable: '--font-sora' });
-const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-jakarta' });
+const sans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' });
 const mono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' });
 
+const title = 'Clientcast — client updates drafted from your git commits';
+const description =
+  'Clientcast reads your git commits, drafts the client update with AI, and emails it with a review link. Replies get classified — approval, feedback, or scope creep — with hours and dollars attached.';
+
 export const metadata: Metadata = {
-  title: 'Clientcast — ship work, skip the update emails',
-  description: 'Share a live link instead of writing another status email. Clients see exactly what you shipped.',
+  metadataBase: new URL('https://clientcast-landing.vercel.app'),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: 'https://clientcast-landing.vercel.app',
+    siteName: 'Clientcast',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title,
+    description,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${sora.variable} ${jakarta.variable} ${mono.variable}`}>
-      <body className="bg-[#0A0F0E] text-[#ECF2F0] font-[family-name:var(--font-jakarta)] antialiased">
+    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+      <body className="bg-[#0a0a0a] text-[#ededed] font-[family-name:var(--font-geist-sans)] antialiased">
         {children}
       </body>
     </html>
