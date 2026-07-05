@@ -51,6 +51,15 @@ The full update payload — commits, the drafted email, a snapshot of your scope
 **Can I self-host the viewer?**
 Yes. Deploy `viewer/` to your own Vercel project and point clientcast at it with `CLIENTCAST_VIEWER_URL`.
 
+**Is clientcast free?**
+Yes. It's MIT-licensed and open source — `npm install -g clientcast`. There's no clientcast subscription or per-seat fee. The only costs are pass-through services you already control: email delivery (Resend, free tier), invoicing (Stripe, per-transaction), and hosting the viewer (Vercel, free tier). Local drafting uses your existing Claude Pro/Max subscription.
+
+**Do I need Claude Code installed to use the CLI?**
+Yes. The local CLI spawns the `claude` binary on your PATH to draft updates and classify replies, so Claude Code has to be installed and signed in. That's the design — it keeps your Pro/Max subscription as the only credential, with no separate API key for local use. The hosted viewer is the exception: it can't spawn the CLI, so it uses `ANTHROPIC_API_KEY` directly.
+
+**What languages or stacks does it work with?**
+Any of them. clientcast reads your git commit history, not your source code, so it's language- and framework-agnostic — a Rails app, a Next.js site, a Python service, and a static HTML build all work the same way. If it's a git repo, clientcast can draft updates from it.
+
 ## What you get
 
 - **`clientcast`** — CLI that reads recent commits and drafts a client update with Claude
