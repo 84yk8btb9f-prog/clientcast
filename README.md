@@ -1,8 +1,26 @@
 # clientcast
 
+[![npm version](https://img.shields.io/npm/v/clientcast?style=flat-square&color=F3F2EE&labelColor=0B0B0D)](https://www.npmjs.com/package/clientcast)
+[![license](https://img.shields.io/badge/license-MIT-F3F2EE?style=flat-square&labelColor=0B0B0D)](LICENSE)
+[![node](https://img.shields.io/node/v/clientcast?style=flat-square&color=F3F2EE&labelColor=0B0B0D)](package.json)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-F3F2EE?style=flat-square&labelColor=0B0B0D)](CONTRIBUTING.md)
+
 **Get paid faster for the work you already ship.**
 
-clientcast turns your Git commits into a client update email, delivers it for you, and tells you whether the reply was an approval, real feedback, or a request for additional work — with hours and dollars attached. Built on Claude Code.
+clientcast turns your Git commits into a client update email, delivers it for you, and tells you whether the reply was an approval, real feedback, or a request for additional work — with hours and dollars attached. Built on Claude Code. Free, MIT-licensed, and open source — no clientcast subscription or paid tier.
+
+## Quick start
+
+```bash
+npm install -g clientcast
+
+cd path/to/your/project
+clientcast init      # asks for client name/email, hourly rate, scope doc
+clientcast send      # drafts an update from recent commits and delivers it
+clientcast status    # see the client's reply and any scope-creep flags
+```
+
+See [Requirements](#requirements) below — the CLI needs the `claude` binary on your PATH (Claude Pro/Max subscription, no API key).
 
 > **Why this exists.** Freelancers and agencies bleed hours on status updates and "can you also..." emails that quietly become unpaid work. clientcast reads your commits, drafts a plain-English update for the client, and when the client replies, Claude tells you whether it was approval, feedback, a concern, or scope creep — with hours and dollars attached.
 
@@ -247,6 +265,10 @@ npm run dev -- send --dry-run
 npm run viewer
 ```
 
+## Contributing
+
+Bug reports, feature requests, and PRs are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for dev setup, repo layout, and PR expectations. Please also read the [Code of Conduct](CODE_OF_CONDUCT.md). Security issues should go to niksapa150@gmail.com, not a public issue — see [SECURITY.md](SECURITY.md).
+
 ## License
 
-MIT
+MIT — see [LICENSE](LICENSE). clientcast itself is free and open source; the only costs are pass-through services you choose to enable (Resend, Stripe, Vercel).
