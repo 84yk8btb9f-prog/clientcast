@@ -81,7 +81,7 @@ function renderHtml(args: { body: string; reviewUrl: string; clientName: string 
     </div>
   </div>
   <div style="text-align:center;margin-top:16px;font-size:12px;color:#aaa;">
-    Sent via <a href="https://github.com/84yk8btb9f-prog/clientcast" style="color:#aaa;">clientcast</a>
+    Sent via <a href="https://github.com/nikolas-sapa/clientcast" style="color:#aaa;">clientcast</a>
   </div>
 </body>
 </html>`;
