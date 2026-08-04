@@ -9,3 +9,4 @@ viewer/node_modules
 viewer/.vercel
 .tsbuildinfo
 coverage
+.vercel
